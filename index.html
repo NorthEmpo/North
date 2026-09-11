@@ -1,4 +1,4 @@
-ء<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="ar" dir="rtl">
 
@@ -285,6 +285,8 @@
         .figure-info { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; word-break: break-word; }
 
         .btn-del-fig { position: absolute; top: 8px; left: 8px; background: rgba(239, 68, 68, 0.2); border: 1px solid var(--danger-red); color: var(--danger-red); border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; }
+
+        .btn-edit-fig { position: absolute; top: 8px; left: 38px; background: rgba(59, 130, 246, 0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; }
 
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 65px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(15px); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; z-index: 999; }
 
@@ -624,13 +626,15 @@
 
             <div class="kingdom-section">
 
-                <div class="page-header-title" style="margin-bottom:15px; border-bottom: 1px dashed var(--border-color);">
+                <div class="page-header-title" style="margin-bottom:6px; border-bottom: 1px dashed var(--border-color);">
 
-                    <span>👑 أبرز شخصيات المملكة والرتب الملكية</span>
+                    <span>👑 الرتب الملكية للإمبراطورية</span>
 
                     <button id="addFigureAdminBtn" class="btn-action btn-approve hidden" onclick="openAddFigureModal()">+ إضافة شخصية / رتبة</button>
 
                 </div>
+
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;">أبرز شخصيات المملكة وإنجازاتهم</div>
 
                 <div id="figuresGrid" class="figures-grid"></div>
 
@@ -707,6 +711,24 @@
                 <button class="my-guild-btn" onclick="navigateToTrainingPage()">
 
                     <span>📚 قسم تعليم المشرفين وشروحات النقابات</span><span>➔</span>
+
+                </button>
+
+                <button class="my-guild-btn" onclick="navigateToClassificationsPage()">
+
+                    <span>🏷️ قسم التصنيفات</span><span>➔</span>
+
+                </button>
+
+                <button class="my-guild-btn" onclick="navigateToBankPage()">
+
+                    <span>🏦 قسم البنك</span><span>➔</span>
+
+                </button>
+
+                <button class="my-guild-btn" onclick="navigateToLawsPage()">
+
+                    <span>⚖️ قسم القوانين</span><span>➔</span>
 
                 </button>
 
@@ -1200,6 +1222,100 @@
 
 
 
+    <div id="classificationsPage" class="page-screen hidden">
+
+        <nav class="navbar">
+
+            <div class="navbar-brand"><h1>🏷️ قسم التصنيفات</h1></div>
+
+            <div class="navbar-actions">
+
+                <button onclick="switchBottomTab('home')" class="btn-back">← العودة للرئيسية</button>
+
+            </div>
+
+        </nav>
+
+        <div class="page-content">
+
+            <div class="page-header-title" style="margin-bottom:15px;">
+
+                <span>📊 شروط التصنيفات</span>
+
+            </div>
+
+            <div id="classificationTiersBox" style="display:flex; flex-direction:column; gap:14px; margin-bottom:35px;"></div>
+
+
+
+            <div class="page-header-title" style="margin-bottom:15px; border-top:1px dashed var(--border-color); padding-top:25px;">
+
+                <span>🚩 شروط الإعلان عن نقابة</span>
+
+                <button id="editGuildAnnounceCondBtn" class="btn-action btn-edit hidden" onclick="openEditGuildAnnounceModal()">✏️ تعديل الشروط</button>
+
+            </div>
+
+            <div id="guildAnnounceConditionsBox" class="form-card"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="bankPage" class="page-screen hidden">
+
+        <nav class="navbar">
+
+            <div class="navbar-brand"><h1>🏦 قسم البنك</h1></div>
+
+            <div class="navbar-actions">
+
+                <button id="addBankProductAdminBtn" class="btn-action btn-approve hidden" onclick="openAddBankProductModal()">+ إضافة منتج</button>
+
+                <button onclick="switchBottomTab('home')" class="btn-back">← العودة للرئيسية</button>
+
+            </div>
+
+        </nav>
+
+        <div class="page-content">
+
+            <div id="bankProductsBox" style="display:flex; flex-direction:column; gap:12px;"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="lawsPage" class="page-screen hidden">
+
+        <nav class="navbar">
+
+            <div class="navbar-brand"><h1>⚖️ قسم القوانين</h1></div>
+
+            <div class="navbar-actions">
+
+                <button id="addLawAdminBtn" class="btn-action btn-approve hidden" onclick="openAddLawModal()">+ إضافة قانون</button>
+
+                <button onclick="switchBottomTab('home')" class="btn-back">← العودة للرئيسية</button>
+
+            </div>
+
+        </nav>
+
+        <div class="page-content">
+
+            <div id="lawsBox" style="display:flex; flex-direction:column; gap:12px;"></div>
+
+        </div>
+
+    </div>
+
+
+
     <div id="bottomNav" class="bottom-nav hidden">
 
         <button id="navHomeBtn" class="bottom-nav-item active" onclick="switchBottomTab('home')">
@@ -1329,6 +1445,40 @@
                     <button type="submit" class="btn-submit">حفظ الشخصية</button>
 
                     <button type="button" onclick="closeModal('addFigureModal')" class="btn-submit" style="background:#334155; color:#fff;">إلغاء</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="editFigureModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h3 style="margin-bottom: 15px; text-align: right;">✏️ تعديل شخصية / رتبة ملكية</h3>
+
+            <form onsubmit="handleSaveEditFigure(event)">
+
+                <input type="hidden" id="editFigId">
+
+                <div class="form-group"><label>الاسم *</label><input type="text" id="editFigName" class="form-control" required></div>
+
+                <div class="form-group"><label>الرتبة الملكية *</label><input type="text" id="editFigRank" class="form-control" required></div>
+
+                <div class="form-group"><label>أهم المعلومات والنبذة *</label><textarea id="editFigInfo" class="form-control" required></textarea></div>
+
+                <div class="form-group"><label>تغيير الصورة (اختياري)</label><input type="file" id="editFigImageInput" class="form-control" accept="image/*"></div>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+
+                    <button type="submit" class="btn-submit">حفظ التعديلات</button>
+
+                    <button type="button" onclick="closeModal('editFigureModal')" class="btn-submit" style="background:#334155; color:#fff;">إلغاء</button>
 
                 </div>
 
@@ -2108,6 +2258,120 @@
 
 
 
+    <div id="editClassificationTierModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h3 id="editClassificationTierTitle" style="margin-bottom: 15px; text-align: right;">✏️ تعديل شرح التصنيف</h3>
+
+            <form onsubmit="handleSaveClassificationTier(event)">
+
+                <input type="hidden" id="editClassificationTierKey">
+
+                <div class="form-group"><label>شرح التصنيف وشروط الوصول له *</label><textarea id="editClassificationTierText" class="form-control" rows="7" required></textarea></div>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+
+                    <button type="submit" class="btn-submit">حفظ التعديلات</button>
+
+                    <button type="button" onclick="closeModal('editClassificationTierModal')" class="btn-submit" style="background:#334155; color:#fff;">إلغاء</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="editGuildAnnounceModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h3 style="margin-bottom: 15px; text-align: right;">🚩 تعديل شروط الإعلان عن نقابة</h3>
+
+            <form onsubmit="handleSaveGuildAnnounceConditions(event)">
+
+                <div class="form-group"><label>الشروط *</label><textarea id="editGuildAnnounceText" class="form-control" rows="7" required></textarea></div>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+
+                    <button type="submit" class="btn-submit">حفظ التعديلات</button>
+
+                    <button type="button" onclick="closeModal('editGuildAnnounceModal')" class="btn-submit" style="background:#334155; color:#fff;">إلغاء</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="addBankProductModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h3 id="bankProductModalTitle" style="margin-bottom: 15px; text-align: right;">🏦 إضافة منتج</h3>
+
+            <form onsubmit="handleSaveBankProduct(event)">
+
+                <input type="hidden" id="bankProductId">
+
+                <div class="form-group"><label>اسم المنتج *</label><input type="text" id="bankProductName" class="form-control" required></div>
+
+                <div class="form-group"><label>شرح المنتج (اختياري)</label><textarea id="bankProductDesc" class="form-control" rows="4"></textarea></div>
+
+                <div class="form-group"><label>السعر *</label><input type="text" id="bankProductPrice" class="form-control" required></div>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+
+                    <button type="submit" class="btn-submit">حفظ المنتج</button>
+
+                    <button type="button" onclick="closeModal('addBankProductModal')" class="btn-submit" style="background:#334155; color:#fff;">إلغاء</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="addLawModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h3 id="lawModalTitle" style="margin-bottom: 15px; text-align: right;">⚖️ إضافة قانون</h3>
+
+            <form onsubmit="handleSaveLaw(event)">
+
+                <input type="hidden" id="lawId">
+
+                <div class="form-group"><label>نص القانون *</label><textarea id="lawText" class="form-control" rows="5" required></textarea></div>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+
+                    <button type="submit" class="btn-submit">حفظ القانون</button>
+
+                    <button type="button" onclick="closeModal('addLawModal')" class="btn-submit" style="background:#334155; color:#fff;">إلغاء</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
     <script type="module">
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -2350,7 +2614,9 @@
 
         }
 
-function getAllGuildNames() {
+
+
+        function getAllGuildNames() {
 
             const guildsList = window.globalGuildsObj ? Object.values(window.globalGuildsObj) : DEFAULT_GUILDS;
 
@@ -2447,6 +2713,14 @@ function getAllGuildNames() {
             listenToEmpireFormsRealtime();
 
             listenToImportantNoticeRealtime();
+
+            listenToClassificationTiersRealtime();
+
+            listenToGuildAnnounceConditionsRealtime();
+
+            listenToBankProductsRealtime();
+
+            listenToLawsRealtime();
 
         });
 
@@ -2894,7 +3168,7 @@ function getAllGuildNames() {
 
                 html += `<div style="font-weight:800; margin:14px 0 8px;">📢 الإشعارات المُرسلة للجميع</div>`;
 
-                html += broadcasts.length ? broadcasts.map(renderNotifItem).join("") : '<div class="hint">لا توجد إشعارات مُرسلة بعد.</div>';
+html += broadcasts.length ? broadcasts.map(renderNotifItem).join("") : '<div class="hint">لا توجد إشعارات مُرسلة بعد.</div>';
 
             } else {
 
@@ -3522,7 +3796,9 @@ function getAllGuildNames() {
 
                 const data = snapshot.val();
 
-                renderFiguresGrid(data ? Object.values(data) : []);
+                window.globalFigures = data ? Object.values(data) : [];
+
+                renderFiguresGrid(window.globalFigures);
 
             });
 
@@ -4038,7 +4314,7 @@ function getAllGuildNames() {
 
         function hideAllPages() {
 
-            ["authWrapper","statusWrapper","mainDashboardPage","myGuildsPage","guildDetailPage","guildBranchesPage","pendingRequestsPage","empireAccountsPage","permanentNewsPage","chatPage","trainingPage","lessonDetailPage","empireFormsPage"].forEach(id => {
+            ["authWrapper","statusWrapper","mainDashboardPage","myGuildsPage","guildDetailPage","guildBranchesPage","pendingRequestsPage","empireAccountsPage","permanentNewsPage","chatPage","trainingPage","lessonDetailPage","empireFormsPage","classificationsPage","bankPage","lawsPage"].forEach(id => {
 
                 document.getElementById(id).classList.add("hidden");
 
@@ -4276,9 +4552,11 @@ function getAllGuildNames() {
 
                 const delBtn = isSiteAdmin() ? `<button class="btn-del-fig" onclick="deleteFigure('${fig.id}')">✕</button>` : "";
 
+                const editBtn = isSiteAdmin() ? `<button class="btn-edit-fig" onclick="openEditFigureModal('${fig.id}')">✏️</button>` : "";
+
                 const img = fig.image ? `<img src="${fig.image}" class="figure-img">` : `<div class="figure-img" style="background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:1.5rem;">👑</div>`;
 
-                card.innerHTML = `${delBtn}${img}<div class="figure-name">${fig.name}</div><div class="figure-rank">${fig.rank}</div><div class="figure-info">${fig.info}</div>`;
+                card.innerHTML = `${delBtn}${editBtn}${img}<div class="figure-name">${fig.name}</div><div class="figure-rank">${fig.rank}</div><div class="figure-info">${fig.info}</div>`;
 
                 grid.appendChild(card);
 
@@ -4323,6 +4601,66 @@ function getAllGuildNames() {
         window.deleteFigure = async function(figId) {
 
             if (confirm("هل أنت متأكد من حذف هذه الشخصية؟")) await remove(ref(db, "kingdom_figures/" + figId));
+
+        };
+
+
+
+        window.openEditFigureModal = function(figId) {
+
+            if (!isSiteAdmin()) return;
+
+            const fig = (window.globalFigures || []).find(f => f.id === figId);
+
+            if (!fig) return;
+
+            document.getElementById("editFigId").value = fig.id;
+
+            document.getElementById("editFigName").value = fig.name || "";
+
+            document.getElementById("editFigRank").value = fig.rank || "";
+
+            document.getElementById("editFigInfo").value = fig.info || "";
+
+            document.getElementById("editFigImageInput").value = "";
+
+            document.getElementById("editFigureModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.handleSaveEditFigure = async function(e) {
+
+            e.preventDefault();
+
+            if (!isSiteAdmin()) return;
+
+            const figId = document.getElementById("editFigId").value;
+
+            const name = document.getElementById("editFigName").value.trim();
+
+            const rank = document.getElementById("editFigRank").value.trim();
+
+            const info = document.getElementById("editFigInfo").value.trim();
+
+            const file = document.getElementById("editFigImageInput").files[0];
+
+            const saveEdit = async (imgData) => {
+
+                const payload = { name, rank, info };
+
+                if (imgData) payload.image = imgData;
+
+                await update(ref(db, "kingdom_figures/" + figId), payload);
+
+                closeModal("editFigureModal");
+
+            };
+
+            if (file) { const reader = new FileReader(); reader.onload = async (evt) => saveEdit(evt.target.result); reader.readAsDataURL(file); }
+
+            else saveEdit(null);
 
         };
 
@@ -5223,6 +5561,7 @@ function getAllGuildNames() {
             if (isSiteAdmin()) updateData.admiral = document.getElementById("editGuildAdmiral").value.trim();
 
             const perform = async (imgData) => {
+
                 if (imgData) updateData.image = imgData;
 
                 await update(ref(db, "empire_guilds/" + currentViewingGuildId), updateData);
@@ -7129,13 +7468,481 @@ function getAllGuildNames() {
 
         };
 
+
+
+        const CLASSIFICATION_TIERS = ["E", "C", "B", "A", "S"];
+
+
+
+        function listenToClassificationTiersRealtime() {
+
+            onValue(ref(db, "classification_tiers"), (snapshot) => {
+
+                window.globalClassificationTiers = snapshot.val() || {};
+
+                if (!document.getElementById("classificationsPage").classList.contains("hidden")) renderClassificationTiers();
+
+            });
+
+        }
+
+
+
+        function renderClassificationTiers() {
+
+            const box = document.getElementById("classificationTiersBox");
+
+            if (!box) return;
+
+            const data = window.globalClassificationTiers || {};
+
+            const canEdit = isSiteAdmin();
+
+            box.innerHTML = CLASSIFICATION_TIERS.map(tier => {
+
+                const text = (data[tier] && data[tier].text) ? data[tier].text : "";
+
+                return `<div class="form-card">
+
+                    <div class="form-card-title">🏷️ التصنيف ${tier}</div>
+
+                    <div class="form-card-text">${text || "لم يتم إضافة شرح لهذا التصنيف بعد."}</div>
+
+                    ${canEdit ? `<div class="form-card-actions"><button class="btn-action btn-edit" onclick="openEditClassificationTierModal('${tier}')">✏️ تعديل الشرح</button></div>` : ""}
+
+                </div>`;
+
+            }).join("");
+
+        }
+
+
+
+        window.navigateToClassificationsPage = function() {
+
+            showLoaderThen(() => {
+
+                document.getElementById("classificationsPage").classList.remove("hidden");
+
+                document.getElementById("bottomNav").classList.remove("hidden");
+
+                const editAnnounceBtn = document.getElementById("editGuildAnnounceCondBtn");
+
+                if (isSiteAdmin()) editAnnounceBtn.classList.remove("hidden"); else editAnnounceBtn.classList.add("hidden");
+
+                renderClassificationTiers();
+
+                renderGuildAnnounceConditions();
+
+            });
+
+        };
+
+
+
+        window.openEditClassificationTierModal = function(tier) {
+
+            if (!isSiteAdmin()) return;
+
+            const data = window.globalClassificationTiers || {};
+
+            document.getElementById("editClassificationTierKey").value = tier;
+
+            document.getElementById("editClassificationTierTitle").innerText = `✏️ تعديل شرح التصنيف ${tier}`;
+
+            document.getElementById("editClassificationTierText").value = (data[tier] && data[tier].text) ? data[tier].text : "";
+
+            document.getElementById("editClassificationTierModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.handleSaveClassificationTier = async function(e) {
+
+            e.preventDefault();
+
+            if (!isSiteAdmin()) return;
+
+            const tier = document.getElementById("editClassificationTierKey").value;
+
+            const text = document.getElementById("editClassificationTierText").value.trim();
+
+            await set(ref(db, "classification_tiers/" + tier), { tier, text, timestamp: Date.now() });
+
+            closeModal("editClassificationTierModal");
+
+        };
+
+
+
+        function listenToGuildAnnounceConditionsRealtime() {
+
+            onValue(ref(db, "site_settings/guild_announcement_conditions"), (snapshot) => {
+
+                window.globalGuildAnnounceConditions = snapshot.val() || "";
+
+                if (!document.getElementById("classificationsPage").classList.contains("hidden")) renderGuildAnnounceConditions();
+
+            });
+
+        }
+
+
+
+        function renderGuildAnnounceConditions() {
+
+            const box = document.getElementById("guildAnnounceConditionsBox");
+
+            if (!box) return;
+
+            const text = window.globalGuildAnnounceConditions || "";
+
+            box.innerHTML = `<div class="form-card-text">${text || "لم يتم إضافة شروط الإعلان عن نقابة بعد."}</div>`;
+
+        }
+
+
+
+        window.openEditGuildAnnounceModal = function() {
+
+            if (!isSiteAdmin()) return;
+
+            document.getElementById("editGuildAnnounceText").value = window.globalGuildAnnounceConditions || "";
+
+            document.getElementById("editGuildAnnounceModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.handleSaveGuildAnnounceConditions = async function(e) {
+
+            e.preventDefault();
+
+            if (!isSiteAdmin()) return;
+
+            const text = document.getElementById("editGuildAnnounceText").value.trim();
+
+            await set(ref(db, "site_settings/guild_announcement_conditions"), text);
+
+            closeModal("editGuildAnnounceModal");
+
+        };
+
+
+
+        function listenToBankProductsRealtime() {
+
+            onValue(ref(db, "bank_products"), (snapshot) => {
+
+                const data = snapshot.val();
+
+                const list = data ? Object.values(data) : [];
+
+                list.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+                window.globalBankProducts = list;
+
+                if (!document.getElementById("bankPage").classList.contains("hidden")) renderBankProducts();
+
+            });
+
+        }
+
+
+
+        function renderBankProducts() {
+
+            const box = document.getElementById("bankProductsBox");
+
+            if (!box) return;
+
+            const list = window.globalBankProducts || [];
+
+            if (!list.length) { box.innerHTML = '<div class="empty-news-state">لا توجد منتجات مضافة حتى الآن.</div>'; return; }
+
+            const canManage = isSiteAdmin();
+
+            box.innerHTML = list.map(p => `
+
+                <div class="form-card">
+
+                    <div class="form-card-title">🛒 ${p.name || ""} <span style="color:var(--accent-blue); font-weight:800;">— ${p.price || ""}</span></div>
+
+                    ${p.description ? `<div class="form-card-text">${p.description}</div>` : ""}
+
+                    ${canManage ? `<div class="form-card-actions">
+
+                        <button class="btn-action btn-edit" onclick="openEditBankProductModal('${p.id}')">✏️ تعديل</button>
+
+                        <button class="btn-action btn-reject" onclick="deleteBankProduct('${p.id}')">🗑️ حذف</button>
+
+                    </div>` : ""}
+
+                </div>
+
+            `).join("");
+
+        }
+
+
+
+        window.navigateToBankPage = function() {
+
+            showLoaderThen(() => {
+
+                document.getElementById("bankPage").classList.remove("hidden");
+
+                document.getElementById("bottomNav").classList.remove("hidden");
+
+                const addBtn = document.getElementById("addBankProductAdminBtn");
+
+                if (isSiteAdmin()) addBtn.classList.remove("hidden"); else addBtn.classList.add("hidden");
+
+                renderBankProducts();
+
+            });
+
+        };
+
+
+
+        window.openAddBankProductModal = function() {
+
+            if (!isSiteAdmin()) return;
+
+            document.getElementById("bankProductId").value = "";
+
+            document.getElementById("bankProductName").value = "";
+
+            document.getElementById("bankProductDesc").value = "";
+
+            document.getElementById("bankProductPrice").value = "";
+
+            document.getElementById("bankProductModalTitle").innerText = "🏦 إضافة منتج";
+
+            document.getElementById("addBankProductModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.openEditBankProductModal = function(productId) {
+
+            if (!isSiteAdmin()) return;
+
+            const p = (window.globalBankProducts || []).find(x => x.id === productId);
+
+            if (!p) return;
+
+            document.getElementById("bankProductId").value = p.id;
+
+            document.getElementById("bankProductName").value = p.name || "";
+
+            document.getElementById("bankProductDesc").value = p.description || "";
+
+            document.getElementById("bankProductPrice").value = p.price || "";
+
+            document.getElementById("bankProductModalTitle").innerText = "✏️ تعديل منتج";
+
+            document.getElementById("addBankProductModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.handleSaveBankProduct = async function(e) {
+
+            e.preventDefault();
+
+            if (!isSiteAdmin()) return;
+
+            const id = document.getElementById("bankProductId").value;
+
+            const name = document.getElementById("bankProductName").value.trim();
+
+            const description = document.getElementById("bankProductDesc").value.trim();
+
+            const price = document.getElementById("bankProductPrice").value.trim();
+
+            if (!name || !price) return;
+
+            const existing = id ? (window.globalBankProducts || []).find(p => p.id === id) : null;
+
+            const productId = id || ("product_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7));
+
+            const timestamp = existing ? (existing.timestamp || Date.now()) : Date.now();
+
+            await set(ref(db, "bank_products/" + productId), { id: productId, name, description, price, timestamp });
+
+            closeModal("addBankProductModal");
+
+        };
+
+
+
+        window.deleteBankProduct = async function(productId) {
+
+            if (!isSiteAdmin()) return;
+
+            if (confirm("هل أنت متأكد من حذف هذا المنتج؟")) await remove(ref(db, "bank_products/" + productId));
+
+        };
+
+
+
+        function listenToLawsRealtime() {
+
+            onValue(ref(db, "empire_laws"), (snapshot) => {
+
+                const data = snapshot.val();
+
+                const list = data ? Object.values(data) : [];
+
+                list.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+                window.globalLaws = list;
+
+                if (!document.getElementById("lawsPage").classList.contains("hidden")) renderLaws();
+
+            });
+
+        }
+
+
+
+        function renderLaws() {
+
+            const box = document.getElementById("lawsBox");
+
+            if (!box) return;
+
+            const list = window.globalLaws || [];
+
+            if (!list.length) { box.innerHTML = '<div class="empty-news-state">لا توجد قوانين مضافة حتى الآن.</div>'; return; }
+
+            const canManage = isSiteAdmin();
+
+            box.innerHTML = list.map((law, i) => `
+
+                <div class="form-card">
+
+                    <div class="form-card-title">⚖️ القانون رقم ${i + 1}</div>
+
+                    <div class="form-card-text">${law.text || ""}</div>
+
+                    ${canManage ? `<div class="form-card-actions">
+
+                        <button class="btn-action btn-edit" onclick="openEditLawModal('${law.id}')">✏️ تعديل</button>
+
+                        <button class="btn-action btn-reject" onclick="deleteLaw('${law.id}')">🗑️ حذف</button>
+
+                    </div>` : ""}
+
+                </div>
+
+            `).join("");
+
+        }
+
+
+
+        window.navigateToLawsPage = function() {
+
+            showLoaderThen(() => {
+
+                document.getElementById("lawsPage").classList.remove("hidden");
+
+                document.getElementById("bottomNav").classList.remove("hidden");
+
+                const addBtn = document.getElementById("addLawAdminBtn");
+
+                if (isSiteAdmin()) addBtn.classList.remove("hidden"); else addBtn.classList.add("hidden");
+
+                renderLaws();
+
+            });
+
+        };
+
+
+
+        window.openAddLawModal = function() {
+
+            if (!isSiteAdmin()) return;
+
+            document.getElementById("lawId").value = "";
+
+            document.getElementById("lawText").value = "";
+
+            document.getElementById("lawModalTitle").innerText = "⚖️ إضافة قانون";
+
+            document.getElementById("addLawModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.openEditLawModal = function(lawId) {
+
+            if (!isSiteAdmin()) return;
+
+            const law = (window.globalLaws || []).find(x => x.id === lawId);
+
+            if (!law) return;
+
+            document.getElementById("lawId").value = law.id;
+
+            document.getElementById("lawText").value = law.text || "";
+
+            document.getElementById("lawModalTitle").innerText = "✏️ تعديل قانون";
+
+            document.getElementById("addLawModal").classList.remove("hidden");
+
+        };
+
+
+
+        window.handleSaveLaw = async function(e) {
+
+            e.preventDefault();
+
+            if (!isSiteAdmin()) return;
+
+            const id = document.getElementById("lawId").value;
+
+            const text = document.getElementById("lawText").value.trim();
+
+            if (!text) return;
+
+            const existing = id ? (window.globalLaws || []).find(l => l.id === id) : null;
+
+            const lawId = id || ("law_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7));
+
+            const timestamp = existing ? (existing.timestamp || Date.now()) : Date.now();
+
+            await set(ref(db, "empire_laws/" + lawId), { id: lawId, text, timestamp });
+
+            closeModal("addLawModal");
+
+        };
+
+
+
+        window.deleteLaw = async function(lawId) {
+
+            if (!isSiteAdmin()) return;
+
+            if (confirm("هل أنت متأكد من حذف هذا القانون؟")) await remove(ref(db, "empire_laws/" + lawId));
+
+        };
+
     </script>
 
 </body>
 
 </html>
-
-
 
 
 
